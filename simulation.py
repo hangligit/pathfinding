@@ -51,6 +51,18 @@ split_indices=['train']*int(len(gids)*0.7)+['val']*int(len(gids)*0.15)+['test']*
 gids_split={k:v for k,v in zip(gids, split_indices)}
 
 
+# Add graphs with up to 50 nodes into the test set
+graphs_ext=[]
+for n_nodes in np.random.choice([40,45,50], 500):
+    G=nx.waxman_graph(n_nodes,beta=0.4, alpha=0.2)
+    Gc=G.subgraph(max(nx.connected_components(G),key=len))
+    Gc=nx.convert_node_labels_to_integers(Gc)
+    graphs_ext.append(Gc)
+
+gids_split.update({k:'test' for k in range(len(graphs), len(graphs)+len(graphs_ext))})
+graphs += graphs_ext
+
+
 global_count=0
 for gid, G in tqdm.tqdm(enumerate(graphs), total=len(graphs)):
     ws = np.random.randint(1, 10, (min(num_weights_per_structure, len(G.edges)), len(G.edges)))
