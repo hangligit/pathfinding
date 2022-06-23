@@ -46,5 +46,5 @@ python test.py --exp_dir output/gnn_samples
 ## Citation
 If you find our work helpful in your research, please consider citing us
 ```latex
-
+Li H, Khan Q, Tresp V, Cremers D. Biologically Inspired Neural Path Finding. In Brain Informatics. BI 2022. Springer
 ```
