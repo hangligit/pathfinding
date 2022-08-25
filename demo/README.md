@@ -1,4 +1,4 @@
-#Demo Path Finding
+## Demo Path Finding
 
 Path-finding.py finds the lowest cost path between a source node and a destination node.
 
